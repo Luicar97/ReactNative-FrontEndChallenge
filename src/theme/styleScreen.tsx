@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { valueFontScreen, valueColorScreen } from '../utils/values';
 
 export const styles = StyleSheet.create({
@@ -46,6 +46,19 @@ export const styles = StyleSheet.create({
     styleToucheOpacity:{
         alignItems:'center',
         justifyContent:'flex-end'
+    },
+    containerRegister:{
+        flex:1,
+        height: Dimensions.get('window').height * 0.8
+    },
+    containerCreate:{
+        flex:1,
+    },
+    containerScroll:{
+        flex:1,
+    },
+    containerSafeArea:{
+        flex:1,
     }
 
 });
