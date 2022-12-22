@@ -50,6 +50,6 @@ export const RegisterScreen = ( { navigation }:Props ) => {
           </ScrollView>
         </SafeAreaView>
 
-  
+
   )
 }

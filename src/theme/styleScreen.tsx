@@ -59,6 +59,12 @@ export const styles = StyleSheet.create({
     },
     containerSafeArea:{
         flex:1,
+    },
+    ///////////////////////////
+    // CHAT SCREEN
+    containerChatScreen:{
+        backgroundColor:'red',
+        height:'100%',
+        flexDirection:'column-reverse',
     }
-
 });
