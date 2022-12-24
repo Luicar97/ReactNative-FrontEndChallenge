@@ -18,11 +18,26 @@ export const styles = StyleSheet.create({
         
     },
     input:{
+        /*
         backgroundColor:'#F0F6FA',
         width: '90%',
         padding: 18,
         borderRadius:22,
         marginVertical:10,
+        */
+        
+        width:Dimensions.get('window').height * 0.45,
+        padding: 18,
+        borderRadius:40,
+        backgroundColor:'#FFFFFF',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
         
     },
     containerInput:{
@@ -63,8 +78,19 @@ export const styles = StyleSheet.create({
     ///////////////////////////
     // CHAT SCREEN
     containerChatScreen:{
-        backgroundColor:'red',
-        height:'100%',
+        height:'80%',
         flexDirection:'column-reverse',
-    }
+        paddingHorizontal: 16,
+        paddingVertical:12,
+    },
+    containerInputScreen:{
+        height:'20%',
+        paddingHorizontal:12,
+        
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-around',
+        alignItems: 'center',
+    },
+    
 });
