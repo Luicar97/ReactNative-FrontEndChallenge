@@ -1,18 +1,26 @@
 import React from 'react'
-import { View, Text, SafeAreaView, Dimensions, Image } from 'react-native';
+import { View, Text, SafeAreaView, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { CustomTextInput } from '../components/CustomTextInput';
 import { styles } from '../theme/styleScreen';
 import { normalize } from '../utils/normalize';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const BaseIcon = require('../assets/base.png');
 const BaseActiveIcon = require('../assets/base-active.png');
+
+const mapArrData = [
+  {
+    'text':'Hola humano, como estas?',
+    'status':'received',
+  },
+];
 
 export const ChatScreen = () => {
 
   const [createData, setCreateData] = React.useState({
     chatbox:'',
   });
+
+  const [mapArrChat, setMapArrChat] = React.useState(mapArrData);
 
   const reuseCreateData = (fieldName:string, fieldValue:string ) => {
     setCreateData(
@@ -25,33 +33,52 @@ export const ChatScreen = () => {
   }
 
 
-  let mapArrData = [
-    {
-      'text':'Hola humano, como estas?',
-      'status':'received',
-    },
-    {
-      'text':'Hola Yana',
-      'status':'sent',
-    },
-  ];
+  
 
-  console.log('createData.chatbox');
-  console.log(!!createData.chatbox.length);
-  console.log(createData.chatbox.length ?  'base-active.png' : 'base.png')
+  let buttonPng =  !!createData.chatbox.length ?  BaseActiveIcon : BaseIcon;
 
-  let buttonPng =  !!createData.chatbox.length ?  BaseActiveIcon : BaseIcon
+  const addArrData = () => {
 
-  console.log('buttonPng');
-  //console.log(buttonPng);
+    console.log('createData.chatbox');
+    console.log(createData);
+
+    const newArr = [
+      {
+        'text':'Hola humano, como estas?',
+        'status':'received',
+      },
+      {
+        'text':createData.chatbox,
+        'status':'sent',
+      }
+      
+    ];
+
+    setMapArrChat(
+      [
+        ...newArr, ...mapArrChat
+      ]
+    );
+
+    setCreateData({
+      chatbox: ''
+    })
+
+
+
+  }
 
   return (
 
     
 
     <SafeAreaView>
+        
         <View style={styles.containerChatScreen}>
-          {mapArrData.reverse().map(r => 
+
+          <ScrollView>
+
+          {mapArrChat.map(r => 
           {
             let alingSelfText = '';
             let colorBack = '';
@@ -71,19 +98,25 @@ export const ChatScreen = () => {
             </View>  
           }
           )}
+          </ScrollView>
         </View>
         
         <View style={styles.containerInputScreen}>
           <View>
             <CustomTextInput name='chatbox'  reuseCreateData={ reuseCreateData } text={createData.chatbox} placeholder='Ingresa aqui tu mensaje' />
           </View>
-          
-          <View style={{position:'relative', left: 0, top: 0, }}>  
+         
+              
+          <TouchableOpacity onPress={ 
+            addArrData
+          }>
             <Image style={{ width: 56, height: 56,}}
             source={buttonPng} />
             <Image style={{ width: 32, height: 28, position:'absolute', left: 14, top: 14 }}
             source={require("../assets/Icon.png")}/>
-          </View>
+          </TouchableOpacity>
+            
+          
 
         </View>
     </SafeAreaView>
